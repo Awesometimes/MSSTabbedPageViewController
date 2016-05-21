@@ -602,10 +602,19 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         xOrigin += (tabInternalPadding / 2.0f);
     }
     
-    self.selectionIndicatorView.frame = CGRectMake(xOrigin,
-                                                   self.bounds.size.height - self.selectionIndicatorInset - self.selectionIndicatorHeight,
-                                                   width,
-                                                   self.selectionIndicatorHeight);
+    if (self.tabIndicatorImage) {
+        self.selectionIndicatorView.frame = CGRectMake(xOrigin,
+                                                       self.contentInset.top + self.selectionIndicatorHeight + self.selectionIndicatorImageWidth,
+                                                       width,
+                                                       self.selectionIndicatorHeight);
+
+    } else {
+        self.selectionIndicatorView.frame = CGRectMake(xOrigin,
+                                                       self.bounds.size.height - self.selectionIndicatorInset - self.selectionIndicatorHeight,
+                                                       width,
+                                                       self.selectionIndicatorHeight);
+        
+    }
 
     [self updateSelectionIndicatorImageView];
 
